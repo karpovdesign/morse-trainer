@@ -117,8 +117,8 @@
     opacity: 0.5;
   }
 
-  .antenna { position: absolute; left: 196px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 2; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.30)); }
-  .antenna-active { position: absolute; left: 196px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 3; display: none; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
+  .antenna { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 2; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.30)); }
+  .antenna-active { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 3; display: none; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
   .line {
     position: absolute;
     background: #141414;
@@ -333,57 +333,57 @@
 <script>
 const NODES = [
   { id: 'T', type: 'dash-h', x: 169, y: 318, morse: '-' },
-  { id: 'E', type: 'dot',    x: 233, y: 314, morse: '.' },
-  { id: 'M', type: 'dash-h', x: 120, y: 318, morse: '--' },
-  { id: 'N', type: 'dot',    x: 172, y: 459, morse: '-.' },
-  { id: 'I', type: 'dot',    x: 269, y: 314, morse: '..' },
-  { id: 'A', type: 'dash-v', x: 237, y: 456, morse: '.-' },
-  { id: 'O', type: 'dash-h', x: 71,  y: 318, morse: '---' },
-  { id: 'G', type: 'dot',    x: 123, y: 360, morse: '--.' },
-  { id: 'K', type: 'dash-h', x: 120, y: 463, morse: '-.-' },
-  { id: 'D', type: 'dot',    x: 172, y: 548, morse: '-..' },
-  { id: 'S', type: 'dot',    x: 305, y: 314, morse: '...' },
-  { id: 'R', type: 'dot',    x: 269, y: 459, morse: '.-.' },
-  { id: 'W', type: 'dash-v', x: 237, y: 546, morse: '.--' },
-  { id: 'H', type: 'dot',    x: 341, y: 314, morse: '....' },
-  { id: 'V', type: 'dash-v', x: 309, y: 357, morse: '...-' },
-  { id: 'F', type: 'dot',    x: 269, y: 409, morse: '..-.' },
-  { id: 'L', type: 'dot',    x: 305, y: 459, morse: '.-..' },
-  { id: 'P', type: 'dot',    x: 269, y: 549, morse: '.--.' },
-  { id: 'J', type: 'dash-v', x: 237, y: 594, morse: '.---' },
-  { id: 'B', type: 'dot',    x: 172, y: 597, morse: '-...' },
-  { id: 'X', type: 'dash-h', x: 120, y: 552, morse: '-..-' },
-  { id: 'Y', type: 'dash-h', x: 69,  y: 463, morse: '-.--' },
-  { id: 'Z', type: 'dot',    x: 123, y: 409, morse: '--..' },
-  { id: 'Q', type: 'dash-h', x: 71,  y: 364, morse: '--.-' },
-  { id: 'C', type: 'dot',    x: 123, y: 504, morse: '-.-.' },
-  { id: 'U', type: 'dash-v', x: 273, y: 357, morse: '..-' },
+  { id: 'E', type: 'dot',    x: 224, y: 314, morse: '.' },
+  { id: 'M', type: 'dash-h', x: 116, y: 318, morse: '--' },
+  { id: 'N', type: 'dot',    x: 171, y: 459, morse: '-.' },
+  { id: 'I', type: 'dot',    x: 265, y: 314, morse: '..' },
+  { id: 'A', type: 'dash-v', x: 226, y: 456, morse: '.-' },
+  { id: 'O', type: 'dash-h', x: 63,  y: 318, morse: '---' },
+  { id: 'G', type: 'dot',    x: 118, y: 360, morse: '--.' },
+  { id: 'K', type: 'dash-h', x: 116, y: 463, morse: '-.-' },
+  { id: 'D', type: 'dot',    x: 171, y: 548, morse: '-..' },
+  { id: 'S', type: 'dot',    x: 306, y: 314, morse: '...' },
+  { id: 'R', type: 'dot',    x: 265, y: 459, morse: '.-.' },
+  { id: 'W', type: 'dash-v', x: 226, y: 546, morse: '.--' },
+  { id: 'H', type: 'dot',    x: 347, y: 314, morse: '....' },
+  { id: 'V', type: 'dash-v', x: 308, y: 357, morse: '...-' },
+  { id: 'F', type: 'dot',    x: 265, y: 409, morse: '..-.' },
+  { id: 'L', type: 'dot',    x: 306, y: 459, morse: '.-..' },
+  { id: 'P', type: 'dot',    x: 265, y: 549, morse: '.--.' },
+  { id: 'J', type: 'dash-v', x: 226, y: 594, morse: '.---' },
+  { id: 'B', type: 'dot',    x: 171, y: 597, morse: '-...' },
+  { id: 'X', type: 'dash-h', x: 116, y: 552, morse: '-..-' },
+  { id: 'Y', type: 'dash-h', x: 63,  y: 463, morse: '-.--' },
+  { id: 'Z', type: 'dot',    x: 118, y: 409, morse: '--..' },
+  { id: 'Q', type: 'dash-h', x: 63,  y: 364, morse: '--.-' },
+  { id: 'C', type: 'dot',    x: 118, y: 504, morse: '-.-.' },
+  { id: 'U', type: 'dash-v', x: 267, y: 357, morse: '..-' },
 ];
 
 const LABELS = [
-  ['O', 85, 315], ['M', 134, 315], ['T', 184, 315], ['E', 244, 315], ['I', 280, 315], ['S', 316, 315], ['H', 352, 315],
-  ['Q', 85, 406], ['G', 158, 384], ['U', 260, 384], ['V', 336, 384],
-  ['Z', 158, 433], ['F', 304, 433], ['K', 134, 460], ['Y', 83, 460],
-  ['N', 207, 469], ['A', 223, 493], ['L', 339, 484], ['R', 280, 509],
-  ['D', 207, 558], ['W', 223, 583], ['P', 303, 573],
-  ['X', 108, 573], ['B', 160, 621], ['J', 263, 621],
-  ['C', 158, 528],
+  ['O', 77, 315], ['M', 131, 315], ['T', 184, 315], ['E', 237, 315], ['I', 278, 315], ['S', 319, 315], ['H', 360, 315],
+  ['Q', 78, 406], ['G', 131, 384], ['U', 278, 384], ['V', 319, 384],
+  ['Z', 131, 433], ['F', 278, 433], ['K', 131, 460], ['Y', 78, 460],
+  ['N', 184, 469], ['A', 237, 493], ['L', 319, 484], ['R', 278, 509],
+  ['D', 184, 558], ['W', 237, 583], ['P', 278, 573],
+  ['X', 131, 573], ['B', 184, 621], ['J', 237, 621],
+  ['C', 131, 528],
 ];
 
 const H_LINES = [
-  { x: 103, y: 324, w: 14 }, { x: 152, y: 324, w: 14 }, { x: 201, y: 324, w: 29 },
-  { x: 261, y: 324, w:  5 }, { x: 297, y: 324, w:  5 }, { x: 333, y: 324, w:  5 },
-  { x: 103, y: 370, w: 17 },
-  { x: 101, y: 469, w: 16 }, { x: 152, y: 469, w: 17 },
-  { x: 261, y: 469, w:  5 }, { x: 261, y: 559, w:  5 },
-  { x: 297, y: 469, w:  5 }, { x: 152, y: 558, w: 17 },
+  { x:  95, y: 324, w: 18 }, { x: 148, y: 324, w: 18 }, { x: 201, y: 324, w: 20 },
+  { x: 252, y: 324, w: 10 }, { x: 293, y: 324, w: 10 }, { x: 334, y: 324, w: 10 },
+  { x:  95, y: 370, w: 20 },
+  { x:  95, y: 469, w: 18 }, { x: 148, y: 469, w: 20 },
+  { x: 250, y: 469, w: 12 }, { x: 250, y: 559, w: 12 },
+  { x: 293, y: 469, w: 10 }, { x: 148, y: 558, w: 20 },
 ];
 const V_LINES = [
-  { x: 133, y: 333, h: 27 }, { x: 133, y: 360, h: 26 }, { x: 133, y: 383, h: 26 }, { x: 279, y: 337, h: 20 }, { x: 279, y: 357, h: 20 }, { x: 279, y: 386, h: 23 }, { x: 279, y: 409, h: 23 },
-  { x: 315, y: 337, h: 20 }, { x: 315, y: 357, h: 20 }, { x: 182, y: 333, h: 126 }, { x: 182, y: 459, h: 125 }, { x: 243, y: 337, h: 119 }, { x: 243, y: 456, h: 119 },
-  { x: 133, y: 409, h: 23 }, { x: 133, y: 478, h: 26 }, { x: 133, y: 504, h: 23 },
-  { x: 182, y: 548, h: 66 }, { x: 243, y: 546, h: 61 },
-  { x: 182, y: 597, h: 23 }, { x: 243, y: 594, h: 19 },
+  { x: 129, y: 333, h: 27 }, { x: 129, y: 360, h: 26 }, { x: 129, y: 383, h: 26 }, { x: 276, y: 337, h: 20 }, { x: 276, y: 357, h: 20 }, { x: 276, y: 386, h: 23 }, { x: 276, y: 409, h: 23 },
+  { x: 317, y: 337, h: 20 }, { x: 317, y: 357, h: 20 }, { x: 182, y: 333, h: 126 }, { x: 182, y: 459, h: 125 }, { x: 235, y: 337, h: 119 }, { x: 235, y: 456, h: 119 },
+  { x: 129, y: 409, h: 23 }, { x: 129, y: 478, h: 26 }, { x: 129, y: 504, h: 23 },
+  { x: 182, y: 548, h: 66 }, { x: 235, y: 546, h: 61 },
+  { x: 182, y: 597, h: 23 }, { x: 235, y: 594, h: 19 },
 ];
 
 const tree = document.getElementById('tree');
