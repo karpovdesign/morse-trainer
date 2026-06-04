@@ -137,9 +137,13 @@
   }
   .dash.vertical { width: 21px; height: 29px; }
   .dash.active {
-    background: var(--dash-active);
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.10), inset 0 1px 4px rgba(0,0,0,0.30);
+    background: #E94615;
+    box-shadow:
+      0 0 32.4px rgba(233,73,24,0.30),
+      inset 0 -1px 0 rgba(255,255,255,0.10),
+      inset 0 1px 4px rgba(0,0,0,0.30);
   }
+  .dash.active::after { opacity: 0; }
 
   .letter {
     position: absolute;
