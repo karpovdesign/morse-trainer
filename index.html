@@ -515,6 +515,76 @@ function deleteBack() {
   updateDecodedDisplay();
   updateDeleteButtons();
 }
+function deleteLastWord() {
+  const trimmed = decodedEl.textContent.trimEnd();
+  if (!trimmed.length) { decodedEl.textContent = ''; }
+  else {
+    const lastSpace = trimmed.lastIndexOf(' ');
+    decodedEl.textContent = lastSpace === -1 ? '' : trimmed.slice(0, lastSpace);
+  }
+  updateDecodedDisplay();
+  updateDeleteButtons();
+}
+
+let backPressStart = 0;
+let backLongTimer = null;
+let backRepeatTimer = null;
+const BACK_LONG_MS = 400;
+const BACK_REPEAT_MS = 350;
+function onBackStart(e) {
+  e.preventDefault();
+  backPressStart = Date.now();
+  backLongTimer = setTimeout(() => {
+    deleteLastWord();
+    backRepeatTimer = setInterval(() => {
+      if (!decodedEl.textContent.trimEnd().length) { clearInterval(backRepeatTimer); return; }
+      deleteLastWord();
+    }, BACK_REPEAT_MS);
+  }, BACK_LONG_MS);
+}
+function onBackEnd(e) {
+  e.preventDefault();
+  const dur = Date.now() - backPressStart;
+  clearTimeout(backLongTimer);
+  clearInterval(backRepeatTimer);
+  backPressStart = 0; backLongTimer = null; backRepeatTimer = null;
+  if (dur < BACK_LONG_MS) deleteBack();
+}
+function deleteLastWord() {
+  const trimmed = decodedEl.textContent.trimEnd();
+  if (!trimmed.length) { decodedEl.textContent = ''; }
+  else {
+    const lastSpace = trimmed.lastIndexOf(' ');
+    decodedEl.textContent = lastSpace === -1 ? '' : trimmed.slice(0, lastSpace);
+  }
+  updateDecodedDisplay();
+  updateDeleteButtons();
+}
+
+let backPressStart = 0;
+let backLongTimer = null;
+let backRepeatTimer = null;
+const BACK_LONG_MS = 400;
+const BACK_REPEAT_MS = 350;
+function onBackStart(e) {
+  e.preventDefault();
+  backPressStart = Date.now();
+  backLongTimer = setTimeout(() => {
+    deleteLastWord();
+    backRepeatTimer = setInterval(() => {
+      if (!decodedEl.textContent.trimEnd().length) { clearInterval(backRepeatTimer); return; }
+      deleteLastWord();
+    }, BACK_REPEAT_MS);
+  }, BACK_LONG_MS);
+}
+function onBackEnd(e) {
+  e.preventDefault();
+  const dur = Date.now() - backPressStart;
+  clearTimeout(backLongTimer);
+  clearInterval(backRepeatTimer);
+  backPressStart = 0; backLongTimer = null; backRepeatTimer = null;
+  if (dur < BACK_LONG_MS) deleteBack();
+}
 function deleteAll() {
   decodedEl.textContent = '';
   currentMorse = '';
@@ -596,9 +666,14 @@ function onPressEnd(e) {
 }
 
 document.getElementById('deleteBinBtn').addEventListener('click', deleteAll);
-document.getElementById('deleteBackBtn').addEventListener('click', deleteBack);
-document.getElementById('deleteBackBtn').addEventListener('dblclick', e => e.preventDefault());
 document.getElementById('deleteBinBtn').addEventListener('dblclick', e => e.preventDefault());
+const backBtn = document.getElementById('deleteBackBtn');
+backBtn.addEventListener('mousedown', onBackStart);
+backBtn.addEventListener('mouseup', onBackEnd);
+backBtn.addEventListener('mouseleave', e => { if (backPressStart) onBackEnd(e); });
+backBtn.addEventListener('touchstart', onBackStart, { passive: false });
+backBtn.addEventListener('touchend', onBackEnd, { passive: false });
+backBtn.addEventListener('touchcancel', onBackEnd, { passive: false });
 
 keyBtn.addEventListener('mousedown', onPressStart);
 keyBtn.addEventListener('mouseup', onPressEnd);
