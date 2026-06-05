@@ -117,8 +117,8 @@
     opacity: 0.5;
   }
 
-  .antenna { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 2; }
-  .antenna-active { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 3; display: none; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
+  .antenna { position: absolute; left: 200px; top: 270px; width: 30px; height: 54px; pointer-events: none; z-index: 2; }
+  .antenna-active { position: absolute; left: 200px; top: 270px; width: 30px; height: 54px; pointer-events: none; z-index: 3; display: none; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
   .line {
     position: absolute;
     background: #141414;
@@ -393,14 +393,14 @@ const antenna = document.createElementNS(ns, 'svg');
 antenna.setAttribute('class', 'antenna');
 antenna.setAttribute('viewBox', '0 0 41 61');
 antenna.setAttribute('fill', 'none');
-antenna.innerHTML = `<defs><filter id="ant-off" x="-10%" y="-10%" width="120%" height="120%"><feOffset in="SourceAlpha" dy="1" result="oa"/><feGaussianBlur in="oa" stdDeviation="2" result="ba"/><feFlood flood-color="black" flood-opacity="0.30" result="df"/><feComposite in="df" in2="ba" operator="in" result="db"/><feComposite in="db" in2="SourceAlpha" operator="in" result="ds"/><feOffset in="SourceAlpha" dy="-1" result="oa2"/><feFlood flood-color="white" flood-opacity="0.10" result="lf"/><feComposite in="lf" in2="oa2" operator="in" result="ls"/><feComposite in="ls" in2="SourceAlpha" operator="in" result="lc"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="ds"/><feMergeNode in="lc"/></feMerge></filter></defs><path d="M35.1355 2C37.5956 2.00026 39.0096 4.79862 37.5505 6.7793L22.487 27.2227C22.3616 27.3929 22.2216 27.5441 22.072 27.6787V56.5C22.072 57.6046 21.1766 58.5 20.072 58.5C18.9675 58.4999 18.072 57.6045 18.072 56.5V27.6777C17.9226 27.5433 17.7823 27.3927 17.657 27.2227L2.59348 6.7793C1.13444 4.79853 2.54923 2 5.0095 2H35.1355Z" fill="#141414" filter="url(#ant-off)"/>`;
+antenna.innerHTML = `<defs><filter id="ant-off-f" x="0" y="0" width="29.4297" height="55" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="bg"/><feBlend mode="normal" in="SourceGraphic" in2="bg" result="shape"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="ha1"/><feOffset dy="1"/><feGaussianBlur stdDeviation="2"/><feComposite in2="ha1" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/><feBlend mode="normal" in2="shape" result="s1"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="ha2"/><feOffset dy="-1"/><feComposite in2="ha2" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0"/><feBlend mode="normal" in2="s1" result="s2"/><feTurbulence type="fractalNoise" baseFrequency="10 10" stitchTiles="stitch" numOctaves="3" result="noise" seed="2694"/><feColorMatrix in="noise" type="luminanceToAlpha" result="an"/><feComponentTransfer in="an" result="cn"><feFuncA type="discrete" tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/></feComponentTransfer><feComposite operator="in" in2="s2" in="cn" result="nc"/><feFlood flood-color="rgba(255,255,255,0.01)" result="cf"/><feComposite operator="in" in2="nc" in="cf" result="c1"/><feMerge><feMergeNode in="s2"/><feMergeNode in="c1"/></feMerge></filter></defs><g filter="url(#ant-off-f)"><path d="M13.2986 31.5C13.2986 30.6716 13.9701 30 14.7986 30C15.627 30 16.2986 30.6716 16.2986 31.5V52.5C16.2986 53.3284 15.627 54 14.7986 54C13.9701 54 13.2986 53.3284 13.2986 52.5V31.5Z" fill="#141414"/><path d="M22.9379 0H6.491C1.29849 0 -1.78503 5.80179 1.12015 10.1055L9.24376 22.1399C11.7954 25.9199 17.3498 25.9513 19.9441 22.2004L28.2674 10.166C31.24 5.86805 28.1637 0 22.9379 0Z" fill="#141414"/></g>`;
 tree.appendChild(antenna);
 
 const antennaActive = document.createElementNS(ns, 'svg');
 antennaActive.setAttribute('class', 'antenna-active');
 antennaActive.setAttribute('viewBox', '0 0 41 61');
 antennaActive.setAttribute('fill', 'none');
-antennaActive.innerHTML = `<path d="M35.1355 2C37.5956 2.00026 39.0096 4.79862 37.5505 6.7793L22.487 27.2227C22.3616 27.3929 22.2216 27.5441 22.072 27.6787V56.5C22.072 57.6046 21.1766 58.5 20.072 58.5C18.9675 58.4999 18.072 57.6045 18.072 56.5V27.6777C17.9226 27.5433 17.7823 27.3927 17.657 27.2227L2.59348 6.7793C1.13444 4.79853 2.54923 2 5.0095 2H35.1355Z" fill="#EEDB1B"/>`;
+antennaActive.innerHTML = `<path d="M13.2986 31.5C13.2986 30.6716 13.9701 30 14.7986 30C15.627 30 16.2986 30.6716 16.2986 31.5V52.5C16.2986 53.3284 15.627 54 14.7986 54C13.9701 54 13.2986 53.3284 13.2986 52.5V31.5Z" fill="#EEDB1B"/><path d="M22.9379 0H6.491C1.29849 0 -1.78503 5.80179 1.12015 10.1055L9.24376 22.1399C11.7954 25.9199 17.3498 25.9513 19.9441 22.2004L28.2674 10.166C31.24 5.86805 28.1637 0 22.9379 0Z" fill="#EEDB1B"/>`;
 tree.appendChild(antennaActive);
 
 H_LINES.forEach(l => {
