@@ -117,7 +117,7 @@
     opacity: 0.5;
   }
 
-  .antenna { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 2; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.30)); }
+  .antenna { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 2; }
   .antenna-active { position: absolute; left: 190px; top: 270px; width: 41px; height: 61px; pointer-events: none; z-index: 3; display: none; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
   .line {
     position: absolute;
@@ -393,7 +393,7 @@ const antenna = document.createElementNS(ns, 'svg');
 antenna.setAttribute('class', 'antenna');
 antenna.setAttribute('viewBox', '0 0 41 61');
 antenna.setAttribute('fill', 'none');
-antenna.innerHTML = `<path d="M35.1355 2C37.5956 2.00026 39.0096 4.79862 37.5505 6.7793L22.487 27.2227C22.3616 27.3929 22.2216 27.5441 22.072 27.6787V56.5C22.072 57.6046 21.1766 58.5 20.072 58.5C18.9675 58.4999 18.072 57.6045 18.072 56.5V27.6777C17.9226 27.5433 17.7823 27.3927 17.657 27.2227L2.59348 6.7793C1.13444 4.79853 2.54923 2 5.0095 2H35.1355Z" fill="#EEDB1B"/>`;
+antenna.innerHTML = `<defs><filter id="ant-off" x="-10%" y="-10%" width="120%" height="120%"><feOffset in="SourceAlpha" dy="1" result="oa"/><feGaussianBlur in="oa" stdDeviation="2" result="ba"/><feFlood flood-color="black" flood-opacity="0.30" result="df"/><feComposite in="df" in2="ba" operator="in" result="db"/><feComposite in="db" in2="SourceAlpha" operator="in" result="ds"/><feOffset in="SourceAlpha" dy="-1" result="oa2"/><feFlood flood-color="white" flood-opacity="0.10" result="lf"/><feComposite in="lf" in2="oa2" operator="in" result="ls"/><feComposite in="ls" in2="SourceAlpha" operator="in" result="lc"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="ds"/><feMergeNode in="lc"/></feMerge></filter></defs><path d="M35.1355 2C37.5956 2.00026 39.0096 4.79862 37.5505 6.7793L22.487 27.2227C22.3616 27.3929 22.2216 27.5441 22.072 27.6787V56.5C22.072 57.6046 21.1766 58.5 20.072 58.5C18.9675 58.4999 18.072 57.6045 18.072 56.5V27.6777C17.9226 27.5433 17.7823 27.3927 17.657 27.2227L2.59348 6.7793C1.13444 4.79853 2.54923 2 5.0095 2H35.1355Z" fill="#141414" filter="url(#ant-off)"/>`;
 tree.appendChild(antenna);
 
 const antennaActive = document.createElementNS(ns, 'svg');
