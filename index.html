@@ -682,12 +682,20 @@ document.addEventListener('keydown', (e) => {
     keyDown = true;
     onPressStart(e);
   }
+  if (e.code === 'Backspace') {
+    e.preventDefault();
+    onBackStart(e);
+  }
 });
 document.addEventListener('keyup', (e) => {
   if (e.code === 'Space' || e.code === 'Enter') {
     e.preventDefault();
     keyDown = false;
     onPressEnd(e);
+  }
+  if (e.code === 'Backspace') {
+    e.preventDefault();
+    onBackEnd(e);
   }
 });
 
