@@ -576,7 +576,8 @@ function deleteAll() {
 
 function commitLetter() {
   if (!currentMorse) return;
-  const letter = MORSE_TO_LETTER[currentMorse] || '·';
+  const letter = MORSE_TO_LETTER[currentMorse];
+  if (!letter) { currentMorse = ''; currentEl.textContent = ''; updateDeleteButtons(); return; }
   decodedEl.textContent += letter;
   currentMorse = '';
   currentEl.textContent = '';
