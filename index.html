@@ -65,7 +65,7 @@
   }
   .tree-wrap {
     position: fixed;
-    bottom: 140px;
+    bottom: calc(140px + env(safe-area-inset-bottom));
     height: 549px;
     left: 0; right: 0;
     max-width: 430px;
@@ -90,7 +90,7 @@
 
   .tree-card {
     position: fixed;
-    bottom: 70px;
+    bottom: calc(70px + env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     width: 390px;
@@ -221,7 +221,7 @@
 
   .bottom-panel {
     position: fixed;
-    bottom: 104px;
+    bottom: calc(104px + env(safe-area-inset-bottom));
     left: 0; right: 0;
     max-width: 390px;
     margin: 0 auto;
