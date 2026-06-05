@@ -537,6 +537,7 @@ const BACK_REPEAT_MS = 600;
 function onBackStart(e) {
   e.preventDefault();
   backPressStart = Date.now();
+  document.getElementById('deleteBackBtn').classList.add('pressed');
   backLongTimer = setTimeout(() => {
     deleteLastWord();
     backRepeatTimer = setInterval(() => {
@@ -551,6 +552,7 @@ function onBackEnd(e) {
   clearTimeout(backLongTimer);
   clearInterval(backRepeatTimer);
   backPressStart = 0; backLongTimer = null; backRepeatTimer = null;
+  document.getElementById('deleteBackBtn').classList.remove('pressed');
   if (dur < BACK_LONG_MS) deleteBack();
 }
 function deleteLastWord() {
@@ -643,8 +645,15 @@ function onPressEnd(e) {
   addSymbol(dur < DOT_MAX_MS ? '.' : '-');
 }
 
-document.getElementById('deleteBinBtn').addEventListener('click', deleteAll);
-document.getElementById('deleteBinBtn').addEventListener('dblclick', e => e.preventDefault());
+const binBtn = document.getElementById('deleteBinBtn');
+binBtn.addEventListener('click', deleteAll);
+binBtn.addEventListener('dblclick', e => e.preventDefault());
+binBtn.addEventListener('mousedown', () => binBtn.classList.add('pressed'));
+binBtn.addEventListener('mouseup', () => binBtn.classList.remove('pressed'));
+binBtn.addEventListener('mouseleave', () => binBtn.classList.remove('pressed'));
+binBtn.addEventListener('touchstart', () => binBtn.classList.add('pressed'), { passive: true });
+binBtn.addEventListener('touchend', () => binBtn.classList.remove('pressed'), { passive: true });
+binBtn.addEventListener('touchcancel', () => binBtn.classList.remove('pressed'), { passive: true });
 const backBtn = document.getElementById('deleteBackBtn');
 backBtn.addEventListener('mousedown', onBackStart);
 backBtn.addEventListener('mouseup', onBackEnd);
