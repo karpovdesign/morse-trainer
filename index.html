@@ -48,11 +48,17 @@
   }
   .decoded-letter {
     position: fixed;
-    top: 132px;
+    top: env(safe-area-inset-top, 0px);
+    bottom: 519px;
     left: 0; right: 0;
     max-width: 430px;
     margin: 0 auto;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .decoded-text {
     font-family: 'SuisseIntlMedium', sans-serif;
     font-size: 64px;
     font-weight: 500;
@@ -61,7 +67,8 @@
     padding: 0 16px;
     word-break: break-all;
     text-transform: lowercase;
-    z-index: 1;
+    text-align: center;
+    width: 100%;
   }
   .cursor { color: #818181; }
   .tree-wrap {
@@ -304,13 +311,14 @@
     .tree-card  { bottom: calc(20px + env(safe-area-inset-bottom)); }
     .bottom-panel { bottom: calc(54px + env(safe-area-inset-bottom)); }
     .tree-wrap  { bottom: calc(90px + env(safe-area-inset-bottom)); }
+    .decoded-letter { bottom: calc(519px + env(safe-area-inset-bottom)); }
   }
 </style>
 </head>
 <body>
 <div class="tree-card"></div>
 <div class="app">
-  <div class="decoded-letter" id="decodedLetter"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span><span id="cursorSpan" class="cursor">•</span></div>
+  <div class="decoded-letter" id="decodedLetter"><div class="decoded-text"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span><span id="cursorSpan" class="cursor">•</span></div></div>
   <div class="tree-wrap">
     <div class="tree" id="tree"></div>
   </div>
