@@ -468,9 +468,13 @@ function initAudio() {
 document.addEventListener('touchstart', initAudio, { once: true, passive: true });
 document.addEventListener('mousedown', initAudio, { once: true });
 
+let toneGen = 0;
+
 function startTone() {
   if (!audioCtx) initAudio();
+  const gen = ++toneGen;
   const play = () => {
+    if (gen !== toneGen) return;
     if (toneNode) return;
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
@@ -489,11 +493,12 @@ function startTone() {
 }
 
 function stopTone() {
+  toneGen++;
   if (!toneNode) return;
   const { osc, gain } = toneNode;
-  gain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.001);
-  setTimeout(() => { try { osc.stop(); } catch(e){} }, 10);
   toneNode = null;
+  gain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.001);
+  setTimeout(() => { try { osc.stop(); } catch(e){} }, 20);
 }
 
 function clearActiveNode() {
