@@ -63,6 +63,8 @@
     text-transform: lowercase;
     z-index: 1;
   }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .cursor { color: #E1E1D9; animation: blink 1.2s step-start infinite; }
   .tree-wrap {
     position: fixed;
     bottom: 90px;
@@ -320,7 +322,7 @@
 <body>
 <div class="tree-card"></div>
 <div class="app">
-  <div class="decoded-letter" id="decodedLetter"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span></div>
+  <div class="decoded-letter" id="decodedLetter"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span><span id="cursorSpan" class="cursor">•</span></div>
   <div class="tree-wrap">
     <div class="tree" id="tree"></div>
   </div>
@@ -521,6 +523,8 @@ function updateDecodedDisplay() {
   const preview = currentMorse ? (MORSE_TO_LETTER[currentMorse] || '') : '';
   document.getElementById('committedSpan').textContent = decodedEl.textContent;
   document.getElementById('previewSpan').textContent = preview;
+  const isEmpty = !decodedEl.textContent && !preview;
+  document.getElementById('cursorSpan').style.display = isEmpty ? '' : 'none';
 }
 function updateDeleteButtons() {
   const hasAny = decodedEl.textContent.length > 0 || !!(currentMorse && MORSE_TO_LETTER[currentMorse]);
@@ -711,6 +715,8 @@ document.addEventListener('keyup', (e) => {
     onBackEnd(e);
   }
 });
+
+updateDecodedDisplay();
 
 clearBtn && clearBtn.addEventListener('click', () => {
   decodedEl.textContent = '';
