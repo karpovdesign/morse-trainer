@@ -295,24 +295,28 @@
 
   .toast {
     position: fixed;
-    bottom: calc(130px * var(--scale, 1) + 20px);
+    top: calc(env(safe-area-inset-top, 0px) + 16px);
     left: 50%;
     transform: translateX(-50%);
     background: rgba(255,255,255,0.10);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    color: #E1E1D9;
+    color: #A0A0A0;
     font-family: 'SuisseIntl', sans-serif;
-    font-size: 13px;
-    padding: 7px 14px;
+    font-size: 15px;
+    padding: 8px 16px 8px 12px;
     border-radius: 20px;
     white-space: nowrap;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.2s;
+    transition: opacity 0.15s;
     z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .toast.show { opacity: 1; }
+  .toast svg { flex-shrink: 0; opacity: 0.7; }
 
   iframe, [class*="chat"], [class*="comment"], [id*="chat"], [id*="comment"],
   [class*="widget"], [id*="widget"], [class*="bubble"], [id*="bubble"] {
@@ -329,7 +333,7 @@
 </style>
 </head>
 <body>
-<div class="toast" id="toast">Not available on web</div>
+<div class="toast" id="toast"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.99805 10.0009C3.99805 5.58212 7.58016 2 11.9989 2C16.4177 2 19.9998 5.58212 19.9998 10.0009C19.9998 12.5861 18.7729 14.885 16.8727 16.3465C16.5957 16.5595 16.3043 16.7549 16.0001 16.9308V17H7.99775V16.9308C7.69359 16.7549 7.40216 16.5595 7.12515 16.3465C5.22495 14.885 3.99805 12.5861 3.99805 10.0009Z" fill="#A0A0A0"/><path d="M7.99775 18.5V18.9988C7.99775 21.2086 9.78914 23 11.9989 23C14.2087 23 16.0001 21.2086 16.0001 18.9988V18.5H7.99775Z" fill="#A0A0A0"/></svg>not supported</div>
 <div class="decoded-letter" id="decodedLetter"><div class="decoded-text"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span><span id="cursorSpan" class="cursor">•</span></div></div>
 <div id="appRoot">
 <div class="tree-card"></div>
@@ -704,20 +708,16 @@ function onPressEnd(e) {
 
 const binBtn = document.getElementById('deleteBinBtn');
 const binWrap = binBtn.closest('.btn-wrap');
-let toastTimer = null;
-binBtn.addEventListener('click', () => {
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
-});
+const toast = document.getElementById('toast');
+const showToast = () => toast.classList.add('show');
+const hideToast = () => toast.classList.remove('show');
 binBtn.addEventListener('dblclick', e => e.preventDefault());
-binBtn.addEventListener('mousedown', () => binBtn.classList.add('pressed'));
-binBtn.addEventListener('mouseup', () => binBtn.classList.remove('pressed'));
-binBtn.addEventListener('mouseleave', () => binBtn.classList.remove('pressed'));
-binBtn.addEventListener('touchstart', () => binBtn.classList.add('pressed'), { passive: true });
-binBtn.addEventListener('touchend', () => binBtn.classList.remove('pressed'), { passive: true });
-binBtn.addEventListener('touchcancel', () => binBtn.classList.remove('pressed'), { passive: true });
+binBtn.addEventListener('mousedown', () => { binBtn.classList.add('pressed'); showToast(); });
+binBtn.addEventListener('mouseup', () => { binBtn.classList.remove('pressed'); hideToast(); });
+binBtn.addEventListener('mouseleave', () => { binBtn.classList.remove('pressed'); hideToast(); });
+binBtn.addEventListener('touchstart', () => { binBtn.classList.add('pressed'); showToast(); }, { passive: true });
+binBtn.addEventListener('touchend', () => { binBtn.classList.remove('pressed'); hideToast(); }, { passive: true });
+binBtn.addEventListener('touchcancel', () => { binBtn.classList.remove('pressed'); hideToast(); }, { passive: true });
 const backBtn = document.getElementById('deleteBackBtn');
 backBtn.addEventListener('mousedown', onBackStart);
 backBtn.addEventListener('mouseup', onBackEnd);
