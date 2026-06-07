@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="theme-color" content="#101010" />
+<link rel="manifest" href="manifest.json" />
 <title>Morse Code Trainer</title>
 <style>
   @font-face {
@@ -63,7 +65,8 @@
     color: #FDE8CB;
     line-height: 1;
     padding: 0 16px;
-    word-break: break-all;
+    overflow-wrap: break-word;
+    word-break: normal;
     text-transform: lowercase;
     text-align: center;
     width: 100%;
@@ -318,6 +321,23 @@
   .toast.show { opacity: 1; }
   .toast svg { flex-shrink: 0; opacity: 0.7; }
 
+  @media (orientation: landscape) and (max-height: 600px) {
+    #appRoot, .decoded-letter, .toast { display: none; }
+    body::after {
+      content: 'Rotate your device';
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'SuisseIntl', sans-serif;
+      font-size: 17px;
+      color: #808080;
+      background: #101010;
+      z-index: 9999;
+    }
+  }
+
   iframe, [class*="chat"], [class*="comment"], [id*="chat"], [id*="comment"],
   [class*="widget"], [id*="widget"], [class*="bubble"], [id*="bubble"] {
     display: none !important;
@@ -333,7 +353,7 @@
 </style>
 </head>
 <body>
-<div class="toast" id="toast"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.99805 10.0009C3.99805 5.58212 7.58016 2 11.9989 2C16.4177 2 19.9998 5.58212 19.9998 10.0009C19.9998 12.5861 18.7729 14.885 16.8727 16.3465C16.5957 16.5595 16.3043 16.7549 16.0001 16.9308V17H7.99775V16.9308C7.69359 16.7549 7.40216 16.5595 7.12515 16.3465C5.22495 14.885 3.99805 12.5861 3.99805 10.0009Z" fill="#A0A0A0"/><path d="M7.99775 18.5V18.9988C7.99775 21.2086 9.78914 23 11.9989 23C14.2087 23 16.0001 21.2086 16.0001 18.9988V18.5H7.99775Z" fill="#A0A0A0"/></svg>not supported</div>
+<div class="toast" id="toast"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.99805 10.0009C3.99805 5.58212 7.58016 2 11.9989 2C16.4177 2 19.9998 5.58212 19.9998 10.0009C19.9998 12.5861 18.7729 14.885 16.8727 16.3465C16.5957 16.5595 16.3043 16.7549 16.0001 16.9308V17H7.99775V16.9308C7.69359 16.7549 7.40216 16.5595 7.12515 16.3465C5.22495 14.885 3.99805 12.5861 3.99805 10.0009Z" fill="#A0A0A0"/><path d="M7.99775 18.5V18.9988C7.99775 21.2086 9.78914 23 11.9989 23C14.2087 23 16.0001 21.2086 16.0001 18.9988V18.5H7.99775Z" fill="#A0A0A0"/></svg>Not supported</div>
 <div class="decoded-letter" id="decodedLetter"><div class="decoded-text"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span><span id="cursorSpan" class="cursor">•</span></div></div>
 <div id="appRoot">
 <div class="tree-card"></div>
