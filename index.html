@@ -293,6 +293,27 @@
   .btn-wrap.lit .btn-icon { filter: drop-shadow(0 0 80px rgba(242,215,194,0.40)); }
   .btn-wrap.lit .btn-icon path { fill: #F2D7C2; }
 
+  .toast {
+    position: fixed;
+    bottom: calc(130px * var(--scale, 1) + 20px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #E1E1D9;
+    font-family: 'SuisseIntl', sans-serif;
+    font-size: 13px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+  .toast.show { opacity: 1; }
+
   iframe, [class*="chat"], [class*="comment"], [id*="chat"], [id*="comment"],
   [class*="widget"], [id*="widget"], [class*="bubble"], [id*="bubble"] {
     display: none !important;
@@ -308,6 +329,7 @@
 </style>
 </head>
 <body>
+<div class="toast" id="toast">Not available on web</div>
 <div class="decoded-letter" id="decodedLetter"><div class="decoded-text"><span id="committedSpan" style="color:#E1E1D9"></span><span id="previewSpan" style="color:#595959"></span><span id="cursorSpan" class="cursor">•</span></div></div>
 <div id="appRoot">
 <div class="tree-card"></div>
@@ -682,7 +704,13 @@ function onPressEnd(e) {
 
 const binBtn = document.getElementById('deleteBinBtn');
 const binWrap = binBtn.closest('.btn-wrap');
-binBtn.addEventListener('click', () => binWrap.classList.toggle('lit'));
+let toastTimer = null;
+binBtn.addEventListener('click', () => {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+});
 binBtn.addEventListener('dblclick', e => e.preventDefault());
 binBtn.addEventListener('mousedown', () => binBtn.classList.add('pressed'));
 binBtn.addEventListener('mouseup', () => binBtn.classList.remove('pressed'));
