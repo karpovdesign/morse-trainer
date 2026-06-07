@@ -101,14 +101,14 @@
     width: 390px;
     height: 499px;
     border-radius: 44px;
-    clip-path: path('M 70.4 0 L 319.6 0 C 363.6 0 390 26.4 390 70.4 L 390 428.6 C 390 472.6 363.6 499 319.6 499 L 70.4 499 C 26.4 499 0 472.6 0 428.6 L 0 70.4 C 0 26.4 26.4 0 70.4 0 Z');
     background:
       linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(255,255,255,0)),
       #1B1B1B;
     box-shadow:
+      0 4px 13px rgba(0,0,0,0.08),
       inset 0 4px 6px rgba(255,255,255,0.02),
       inset 0 -4px 6px rgba(0,0,0,0.30);
-    filter: drop-shadow(0 4px 13px rgba(0,0,0,0.08));
+    overflow: hidden;
     z-index: 0;
   }
   .tree-card::after {
